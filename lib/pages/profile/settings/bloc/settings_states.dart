@@ -1,0 +1,3 @@
+class SettingsSates{
+  const SettingsSates();
+}
