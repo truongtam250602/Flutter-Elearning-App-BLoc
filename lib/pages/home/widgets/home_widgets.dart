@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uleaning_app_bloc/common/entities/course.dart';
 import 'package:uleaning_app_bloc/common/values/colors.dart';
 import 'package:uleaning_app_bloc/common/values/constant.dart';
 import 'package:uleaning_app_bloc/pages/home/bloc/home_page_blocs.dart';
@@ -240,13 +241,14 @@ Widget _reusableMenuText(String text,{Color textColor = Colors.white, Color bgCo
 }
 
 // course grid view
-Widget courseGridView(){
+Widget courseGridView(CourseItem item){
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(15.w),
-      image: const DecorationImage(
-          fit:  BoxFit.cover,
-          image: AssetImage("assets/icons/Image(1).png")
+      image: DecorationImage(
+          fit:  BoxFit.fill,
+          // image: AssetImage("assets/icons/Image(1).png"),
+        image: NetworkImage(AppConstants.SERVER_UPLOADS+item.thumbnail!),
       ),
     ),
     padding: EdgeInsets.only(bottom: 8.h, left: 8.w, right: 8.w),
@@ -255,26 +257,26 @@ Widget courseGridView(){
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Best course of IT and Engineering",
+          item.name??"",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,
           softWrap: false,
           style: TextStyle(
-              color: AppColors.primaryElementText,
+              color: Colors.black,
               fontSize: 10.sp,
               fontWeight: FontWeight.bold
           ),
         ),
         SizedBox(height: 5.h,),
         Text(
-          "Flutter best course",
+          item.description??"",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,
           softWrap: false,
           style: TextStyle(
-              color: AppColors.primaryFourElementText,
+              color: Colors.blue,
               fontSize: 8.sp,
               fontWeight: FontWeight.normal
           ),

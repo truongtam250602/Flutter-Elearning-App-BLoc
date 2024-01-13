@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
       appBar: buildAppBar(_homeController.userProfile.avatar.toString()),
       body: BlocBuilder<HomePageBlocs, HomePageStates>(
         builder: (context, state){
+          print(state.courseItem[1].description);
           return Container(
             margin: EdgeInsets.only(right: 15.w, left: 17.w),
             child: CustomScrollView(
@@ -74,13 +75,13 @@ class _HomePageState extends State<HomePage> {
                       childAspectRatio: 1.6
                     ),
                     delegate: SliverChildBuilderDelegate(
-                      childCount: 4,
+                      childCount: state.courseItem.length,
                       (BuildContext context, int index){
                         return GestureDetector(
                           onTap: (){
 
                           },
-                          child: courseGridView(),
+                          child: courseGridView(state.courseItem[index]),
                         );
                       }
                     ),

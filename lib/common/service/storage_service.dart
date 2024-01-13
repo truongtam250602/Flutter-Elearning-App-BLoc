@@ -39,4 +39,8 @@ class StorageService{
     }
     return UserItem();
   }
+
+  String getUserToken(){
+    return _prefs.getString(AppConstants.STORAGE_USER_TOKEN_KEY)??"";
+  }
 }
