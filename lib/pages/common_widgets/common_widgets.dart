@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uleaning_app_bloc/common/values/colors.dart';
 
-AppBar buildAppBar(String titleName) {
+AppBar buildAppBar(String? titleName) {
   return AppBar(
     backgroundColor: Colors.white,
     centerTitle: true,
@@ -16,7 +16,7 @@ AppBar buildAppBar(String titleName) {
       ),
     ),
     title: Text(
-      titleName,
+      titleName??"",
       style: TextStyle(
           color: Colors.black, fontSize: 20.sp, fontWeight: FontWeight.normal),
     ),

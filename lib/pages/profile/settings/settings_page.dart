@@ -6,6 +6,8 @@ import 'package:uleaning_app_bloc/common/values/constant.dart';
 import 'package:uleaning_app_bloc/global.dart';
 import 'package:uleaning_app_bloc/pages/application/bloc/app_blocs.dart';
 import 'package:uleaning_app_bloc/pages/application/bloc/app_events.dart';
+import 'package:uleaning_app_bloc/pages/home/bloc/home_page_blocs.dart';
+import 'package:uleaning_app_bloc/pages/home/bloc/home_page_events.dart';
 import 'package:uleaning_app_bloc/pages/profile/settings/bloc/settings_states.dart';
 
 import 'bloc/settings_blocs.dart';
@@ -51,6 +53,7 @@ Widget settingsButton(BuildContext context){
             TextButton(onPressed: (){
               // đoạn này trên youtube họ tách ra hẳn 1 hàm riêng
               context.read<AppBlocs>().add(const TriggerAppEvent(0));
+              context.read<HomePageBlocs>().add(const HomePageDots(0));
               // set lai man hinh sau khi dang xuat
               Global.storageService.remove(AppConstants.STORAGE_USER_TOKEN_KEY);
               Global.storageService.remove(AppConstants.STORAGE_USER_PROFILE_KEY);

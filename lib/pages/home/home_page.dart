@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uleaning_app_bloc/common/routes/names.dart';
 import 'package:uleaning_app_bloc/common/values/colors.dart';
 import 'package:uleaning_app_bloc/pages/home/bloc/home_page_blocs.dart';
 import 'package:uleaning_app_bloc/pages/home/home_controller.dart';
@@ -24,8 +25,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _homeController = HomeController(context: context);
     _homeController.init();
-    print(_homeController.userProfile.avatar.toString());
-    print(_homeController.userProfile.name);
   }
 
   @override
@@ -34,7 +33,6 @@ class _HomePageState extends State<HomePage> {
       appBar: buildAppBar(_homeController.userProfile.avatar.toString()),
       body: BlocBuilder<HomePageBlocs, HomePageStates>(
         builder: (context, state){
-          print(state.courseItem[1].description);
           return Container(
             margin: EdgeInsets.only(right: 15.w, left: 17.w),
             child: CustomScrollView(
@@ -79,7 +77,12 @@ class _HomePageState extends State<HomePage> {
                       (BuildContext context, int index){
                         return GestureDetector(
                           onTap: (){
-
+                            Navigator.of(context).pushNamed(
+                              AppRoutes.COURSE_DETAIL_PAGE,
+                              arguments: {
+                                "id": state.courseItem.elementAt(index).id
+                              }
+                            );
                           },
                           child: courseGridView(state.courseItem[index]),
                         );

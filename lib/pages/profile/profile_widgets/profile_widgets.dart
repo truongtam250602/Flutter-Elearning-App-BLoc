@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uleaning_app_bloc/common/routes/names.dart';
+import 'package:uleaning_app_bloc/common/values/constant.dart';
 
 import '../../../common/values/colors.dart';
 
@@ -8,33 +9,31 @@ AppBar buildAppBarProfile() {
   return AppBar(
     backgroundColor: AppColors.primaryBackground,
     shadowColor: Colors.transparent,
-    title: Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          SizedBox(
-            width: 18.w,
-            height: 12.h,
-            child: Image.asset("assets/icons/menu.png"),
-          ),
-          Text(
-            "Profile",
-            style: TextStyle(fontSize: 12.sp, color: AppColors.primaryText),
-          ),
-          SizedBox(
-            width: 20.w,
-            height: 20.h,
-            child: Image.asset("assets/icons/more-vertical.png"),
-          )
-        ],
-      ),
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        SizedBox(
+          width: 18.w,
+          height: 12.h,
+          child: Image.asset("assets/icons/menu.png"),
+        ),
+        Text(
+          "Profile",
+          style: TextStyle(fontSize: 12.sp, color: AppColors.primaryText),
+        ),
+        SizedBox(
+          width: 20.w,
+          height: 20.h,
+          child: Image.asset("assets/icons/more-vertical.png"),
+        )
+      ],
     ),
   );
 }
 
 // avatar, edit avatar view
-Widget profileEditAvatar() {
+Widget profileEditAvatar(String avatarUrl) {
   return Container(
       margin: EdgeInsets.only(top: 20.h),
       width: 65.w,
@@ -44,13 +43,13 @@ Widget profileEditAvatar() {
         alignment: Alignment.bottomRight,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.w),
-            image: const DecorationImage(
-                image: AssetImage("assets/icons/user.png"),
+            image: DecorationImage(
+                image: NetworkImage("${AppConstants.SERVER_API_URL}$avatarUrl"),
                 fit: BoxFit.fitWidth)),
         child: Image(
           width: 20.w,
           height: 20.h,
-          image: AssetImage("assets/icons/edit_3.png"),
+          image: const AssetImage("assets/icons/edit_3.png"),
         ),
       ));
 }

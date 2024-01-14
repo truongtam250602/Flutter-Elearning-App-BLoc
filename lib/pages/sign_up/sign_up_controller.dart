@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uleaning_app_bloc/common/routes/names.dart';
-import 'package:uleaning_app_bloc/common/values/constant.dart';
 import 'package:uleaning_app_bloc/common/widgets/flutter_toast.dart';
 import 'package:uleaning_app_bloc/pages/sign_up/bloc/sign_up_blocs.dart';
 
@@ -46,7 +45,9 @@ class SignUpController{
         await credential.user?.updatePhotoURL(photoUrl);
         toastInfo(msg: "An email has been send to your registered email. To activate is please check your email box and click on the link");
         await credential.user?.sendEmailVerification();
-        Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false);
+        if(context.mounted){
+          Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false);
+        }
       }
     }
     on FirebaseAuthException catch(e){

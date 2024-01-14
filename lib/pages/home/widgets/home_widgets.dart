@@ -276,7 +276,7 @@ Widget courseGridView(CourseItem item){
           textAlign: TextAlign.left,
           softWrap: false,
           style: TextStyle(
-              color: Colors.blue,
+              color: Colors.black,
               fontSize: 8.sp,
               fontWeight: FontWeight.normal
           ),
