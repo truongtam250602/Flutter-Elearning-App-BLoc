@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uleaning_app_bloc/common/entities/entities.dart';
 import 'package:uleaning_app_bloc/common/routes/names.dart';
 import 'package:uleaning_app_bloc/common/values/colors.dart';
 import 'package:uleaning_app_bloc/pages/home/bloc/home_page_blocs.dart';
@@ -18,21 +19,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  late HomeController _homeController;
-
+  // late HomeController _homeController;
+  late UserItem userProfile;
   @override
   void initState(){
     super.initState();
-    _homeController = HomeController(context: context);
-    _homeController.init();
+    // _homeController = HomeController(context: context);
+    // _homeController.init();
+  }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    userProfile = HomeController(context: context).userProfile;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(_homeController.userProfile.avatar.toString()),
+      appBar: buildAppBar(userProfile.avatar.toString()),
       body: BlocBuilder<HomePageBlocs, HomePageStates>(
         builder: (context, state){
+          // check if course list is empty then callback homecontroller init()
+          if(state.courseItem.isEmpty){
+            HomeController(context: context).init();
+          }
           return Container(
             margin: EdgeInsets.only(right: 15.w, left: 17.w),
             child: CustomScrollView(
@@ -47,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SliverToBoxAdapter(
                   child: homePageText(
-                      _homeController.userProfile.name!,
+                      userProfile.name!,
                       color: AppColors.primaryText,
                       fontSize: 16,
                       top: 0
@@ -80,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.of(context).pushNamed(
                               AppRoutes.COURSE_DETAIL_PAGE,
                               arguments: {
-                                "id": state.courseItem.elementAt(index).id
+                                "item" : state.courseItem[index]
                               }
                             );
                           },

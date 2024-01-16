@@ -17,7 +17,7 @@ class HomeController{
     return _singleton;
   }
 
-  UserItem userProfile = Global.storageService.getUserProfile();
+  UserItem get userProfile => Global.storageService.getUserProfile();
 
   Future<void> init() async {
     //make sure that user is logged in and then make an api call

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uleaning_app_bloc/common/routes/names.dart';
 import 'package:uleaning_app_bloc/common/values/constant.dart';
 import 'package:uleaning_app_bloc/global.dart';
+import 'package:uleaning_app_bloc/pages/application/application_page.dart';
 import 'package:uleaning_app_bloc/pages/application/bloc/app_blocs.dart';
 import 'package:uleaning_app_bloc/pages/application/bloc/app_events.dart';
 import 'package:uleaning_app_bloc/pages/home/bloc/home_page_blocs.dart';
@@ -48,7 +49,9 @@ Widget settingsButton(BuildContext context){
           title: const Text("Confirm logout"),
           content: const Text("Do you want to confirm logout?"),
           actions: [
-            TextButton(onPressed: (){Navigator.of(context).pop();},
+            TextButton(onPressed: (){
+              Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.PROFILE_PAGE, (route) => false);
+              },
                 child: const Text("Cancel")),
             TextButton(onPressed: (){
               // đoạn này trên youtube họ tách ra hẳn 1 hàm riêng

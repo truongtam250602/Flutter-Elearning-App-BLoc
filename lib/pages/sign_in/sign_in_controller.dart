@@ -10,6 +10,7 @@ import 'package:uleaning_app_bloc/common/entities/entities.dart';
 import 'package:uleaning_app_bloc/common/values/constant.dart';
 import 'package:uleaning_app_bloc/common/widgets/flutter_toast.dart';
 import 'package:uleaning_app_bloc/global.dart';
+import 'package:uleaning_app_bloc/pages/home/home_controller.dart';
 import 'package:uleaning_app_bloc/pages/sign_in/bloc/sign_in_blocs.dart';
 
 import '../../common/apis/user_api.dart';
@@ -62,7 +63,10 @@ class SignInController {
             //type 1 means email login
             loginRequestEntity.type = 1;
 
-            asyncPostAllData(loginRequestEntity);
+            await asyncPostAllData(loginRequestEntity);
+            if(context.mounted){
+              await HomeController(context: context).init();
+            }
           }else{
             toastInfo(msg: "Currently you are not a user of this app !");
             return;

@@ -5,7 +5,7 @@ import 'package:uleaning_app_bloc/common/values/constant.dart';
 
 import '../../../common/values/colors.dart';
 
-AppBar buildAppBarProfile() {
+AppBar buildAppBarProfile(BuildContext context) {
   return AppBar(
     backgroundColor: AppColors.primaryBackground,
     shadowColor: Colors.transparent,
@@ -14,8 +14,8 @@ AppBar buildAppBarProfile() {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         SizedBox(
-          width: 18.w,
-          height: 12.h,
+          width: 30.w,
+          height: 30.h,
           child: Image.asset("assets/icons/menu.png"),
         ),
         Text(
