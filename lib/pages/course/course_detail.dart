@@ -54,7 +54,10 @@ class _CourseDetailState extends State<CourseDetail> {
                           "application or a website"),
                       SizedBox(height: 20.h,),
                       buttonGoBuy(),
-                      
+                      SizedBox(height: 20.h),
+                      courseSummary(),
+                      SizedBox(height: 20.h),
+                      courseIncludes(context),
                     ],
                   ),
                 ),
